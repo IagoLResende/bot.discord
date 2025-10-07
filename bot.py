@@ -2,12 +2,12 @@ import os
 import discord
 from discord.ext import commands, tasks
 from discord.ui import View, Button
-from dotenv import load_dotenv
 import asyncio
 
-# Carrega o token do .env
-load_dotenv()
-TOKEN = os.getenv("DISCORD_TOKEN")
+# Obtém o token diretamente da variável de ambiente do Railway
+TOKEN = os.environ.get("DISCORD_TOKEN")
+if TOKEN is None:
+    raise ValueError("⚠️ Variável DISCORD_TOKEN não definida no Railway!")
 
 # Configuração do bot
 intents = discord.Intents.default()
